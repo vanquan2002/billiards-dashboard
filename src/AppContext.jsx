@@ -7,10 +7,12 @@ export const AppProvider = ({ children }) => {
   const [tableItemOpen, setTableItemOpen] = useState([]);
   const [tableItemOrderFirst, setTableItemOrderFirst] = useState([]);
   const [isBillModal, setIsBillModal] = useState(false);
+  const [themeDarkMode, setThemeDarkMode] = useState(true);
 
   const toggleTableItemOpen = (arr) => setTableItemOpen(arr);
   const toggleTableItemOrderFirst = (arr) => setTableItemOrderFirst(arr);
   const toggleIsBillModal = (bol) => setIsBillModal(bol);
+  const toggleThemeDarkMode = () => setThemeDarkMode((prev) => !prev);
 
   return (
     <AppContext.Provider
@@ -21,6 +23,8 @@ export const AppProvider = ({ children }) => {
         toggleTableItemOrderFirst,
         isBillModal,
         toggleIsBillModal,
+        themeDarkMode,
+        toggleThemeDarkMode,
       }}
     >
       {children}

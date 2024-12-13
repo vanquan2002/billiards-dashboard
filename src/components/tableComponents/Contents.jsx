@@ -47,23 +47,23 @@ const Contents = () => {
   };
 
   return (
-    <div className="col-span-10 lg:col-span-8 h-screen bg-black relative overflow-hidden">
+    <div className="col-span-10 lg:col-span-8 h-screen bg-white dark:bg-black relative overflow-hidden">
       <div className="hidden lg:block z-0 absolute top-[-200px] right-[-150px] w-[400px] h-[400px] bg-teal-400 rounded-full blur-[250px]"></div>
       <div className="hidden lg:block z-0 absolute bottom-[-200px] left-[-150px] w-[400px] h-[400px] bg-teal-400 rounded-full blur-[300px]"></div>
 
-      <div className="z-20 relative h-full overflow-y-scroll p-4 lg:p-8">
+      <div className="z-20 relative h-full overflow-y-scroll p-4 lg:p-8 text-black dark:text-white">
         <Header />
 
-        <button className="lg:hidden mt-16 flex items-center gap-2 text-white">
+        <button className="lg:hidden mt-16 flex items-center gap-2 text-black dark:text-white">
           <IoMdArrowBack className="text-xl" />
           Quay lại
         </button>
 
         <div className="mt-4 lg:mt-0 w-full flex items-center justify-between">
-          <p className="text-white text-2xl font-medium">Quản lý bàn</p>
-          <div className="hidden lg:flex items-center gap-3 rounded-xl bg-black p-2.5">
-            <button className="flex items-center justify-center h-10 w-10 rounded-lg border border-neutral-600">
-              <IoNotificationsOutline className="text-white text-xl" />
+          <p className="text-2xl font-medium">Quản lý bàn</p>
+          <div className="hidden lg:flex items-center gap-3 rounded-xl bg-neutral-100 dark:bg-black p-2.5">
+            <button className="flex items-center justify-center h-10 w-10 rounded-lg border bg-neutral-200 dark:bg-neutral-900 border-neutral-300 dark:border-neutral-600">
+              <IoNotificationsOutline className="text-xl" />
             </button>
             <button className="rounded-full h-10 w-10 overflow-hidden">
               <img
@@ -73,12 +73,12 @@ const Contents = () => {
               />
             </button>
             <button>
-              <IoIosArrowDown className="text-white" />
+              <IoIosArrowDown className="" />
             </button>
           </div>
         </div>
 
-        <div className="mt-8 lg:mt-6 hidden lg:flex items-center gap-3 text-white">
+        <div className="mt-8 lg:mt-6 hidden lg:flex items-center gap-3">
           <RiHome6Line />
           <IoIosArrowForward className="text-xs" />
           <span className="text-[15px]">Dashboard</span>
@@ -86,54 +86,46 @@ const Contents = () => {
           <span className="text-[15px]">Orders</span>
         </div>
 
-        <div className="border border-neutral-700 mt-8 bg-black rounded-md p-2.5 lg:hidden flex items-center gap-2">
-          <IoIosSearch className="text-white text-xl" />
-          <span className="text-white text-[15px] font-light">
-            Tìm kiếm tại đây
-          </span>
+        <div className="border border-neutral-200 dark:border-neutral-700 mt-8 bg-white dark:bg-black rounded-md p-2.5 lg:hidden flex items-center gap-2">
+          <IoIosSearch className="text-xl" />
+          <span className="text-[15px] font-light">Tìm kiếm tại đây</span>
         </div>
 
-        <div className="border border-neutral-700 mt-4 bg-neutral-900 rounded-md p-2.5 lg:hidden flex items-center justify-center gap-2">
-          <FiFilter className="text-white text-lg" />
-          <span className="text-white text-[15px] font-light">Bộ lọc</span>
+        <div className="border border-neutral-200 dark:border-neutral-700 mt-4 bg-neutral-100 dark:bg-neutral-900 rounded-md p-2.5 lg:hidden flex items-center justify-center gap-2">
+          <FiFilter className="text-lg" />
+          <span className="text-[15px] font-light">Bộ lọc</span>
         </div>
 
-        <div className="hidden lg:grid grid-cols-4 gap-3 bg-neutral-900 p-5 mt-9">
+        <div className="hidden lg:grid grid-cols-4 gap-3 bg-neutral-100 dark:bg-neutral-900 p-5 mt-9 rounded-lg">
           <div className="col-span-1">
-            <span className="text-white">Tìm bàn</span>
-            <div className="border border-neutral-700 mt-1.5 bg-black rounded-md p-2.5 flex items-center gap-2">
-              <IoIosSearch className="text-white text-xl" />
-              <span className="text-white text-[15px] font-light">
-                Tìm kiếm tại đây
-              </span>
+            <span className="">Tìm bàn</span>
+            <div className="border border-neutral-700 mt-1.5 bg-neutral-100 dark:bg-black rounded-md p-2.5 flex items-center gap-2">
+              <IoIosSearch className="text-xl" />
+              <span className="text-[15px] font-light">Tìm kiếm tại đây</span>
             </div>
           </div>
           <div className="col-span-1">
-            <span className="text-white">Trạng thái</span>
-            <div className="border border-neutral-700 mt-1.5 bg-black rounded-md p-2.5 flex items-center justify-between">
+            <span className="">Trạng thái</span>
+            <div className="border border-neutral-700 mt-1.5 bg-neutral-100 dark:bg-black rounded-md p-2.5 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <GoDotFill className="text-white text-xs" />
-                <span className="text-white text-[15px] font-light">
-                  Tất cả
-                </span>
+                <GoDotFill className="text-xs" />
+                <span className="text-[15px] font-light">Tất cả</span>
               </div>
-              <IoIosArrowDown className="text-white" />
+              <IoIosArrowDown className="" />
             </div>
           </div>
           <div className="col-span-1">
-            <span className="text-white">Tầng</span>
-            <div className="border border-neutral-700 mt-1.5 bg-black rounded-md p-2.5 flex items-center justify-between gap-2">
-              <span className="text-white text-[15px] font-light">Tầng 1</span>
-              <IoIosArrowDown className="text-white" />
+            <span className="">Tầng</span>
+            <div className="border border-neutral-700 mt-1.5 bg-neutral-100 dark:bg-black rounded-md p-2.5 flex items-center justify-between gap-2">
+              <span className="text-[15px] font-light">Tầng 1</span>
+              <IoIosArrowDown className="" />
             </div>
           </div>
           <div className="col-span-1">
-            <span className="text-white">Nhân viên</span>
-            <div className="border border-neutral-700 mt-1.5 bg-black rounded-md p-2.5 flex items-center justify-between gap-2">
-              <span className="text-white text-[15px] font-light">
-                Nhân viên A
-              </span>
-              <IoIosArrowDown className="text-white" />
+            <span className="">Nhân viên</span>
+            <div className="border border-neutral-700 mt-1.5 bg-neutral-100 dark:bg-black rounded-md p-2.5 flex items-center justify-between gap-2">
+              <span className="text-[15px] font-light">Nhân viên A</span>
+              <IoIosArrowDown className="" />
             </div>
           </div>
         </div>
@@ -154,7 +146,7 @@ const Contents = () => {
               />
               <button
                 onClick={() => changeSelectHandle(item)}
-                className="absolute right-8 bottom-8 flex items-center gap-1.5 p-1 bg-black border border-teal-400 rounded-md"
+                className="absolute right-8 bottom-8 flex items-center gap-1.5 p-1 bg-neutral-100 dark:bg-black border border-teal-400 rounded-md"
               >
                 {tableSelect.includes(item) ? (
                   <div className="w-5 h-5 bg-teal-400 rounded-md flex items-center justify-center">
@@ -163,29 +155,29 @@ const Contents = () => {
                 ) : (
                   <div className="w-5 h-5 border border-teal-400 rounded-md"></div>
                 )}
-                <span className="text-white text-sm">Bàn {item}</span>
+                <span className="text-sm">Bàn {item}</span>
               </button>
 
               <div className="absolute left-8 bottom-8 flex flex-col items-start gap-1.5">
-                <div className="bg-black px-2 py-1.5 leading-3 rounded-lg flex gap-1">
+                <div className="bg-neutral-100 dark:bg-black px-2 py-1.5 leading-3 rounded-lg flex gap-1">
                   <GoDotFill className="text-xs text-teal-400" />
-                  <span className="text-white text-[13px]">Nguyễn Văn B</span>
+                  <span className="text-[13px]">Nguyễn Văn B</span>
                 </div>
-                <div className="bg-black px-2 py-1.5 leading-3 rounded-lg flex gap-1">
+                <div className="bg-neutral-100 dark:bg-black px-2 py-1.5 leading-3 rounded-lg flex gap-1">
                   <GoDotFill className="text-xs text-teal-400" />
-                  <span className="text-white text-[13px]">Bàn trống</span>
+                  <span className="text-[13px]">Bàn trống</span>
                 </div>
-                <div className="bg-black px-2 py-1.5 leading-3 rounded-lg flex gap-1.5">
+                <div className="bg-neutral-100 dark:bg-black px-2 py-1.5 leading-3 rounded-lg flex gap-1.5">
                   <FaRegClock className="text-xs text-teal-400" />
-                  <span className="text-white text-[13px]">00:22:00</span>
+                  <span className="text-[13px]">00:22:00</span>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 lg:mt-16 flex flex-col lg:flex-row justify-center lg:justify-between px-5 py-4 bg-neutral-900 rounded-lg">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 text-white w-full lg:w-1/2">
+        <div className="mt-12 lg:mt-16 flex flex-col lg:flex-row justify-center lg:justify-between px-5 py-4 bg-neutral-100 dark:bg-neutral-900 rounded-lg">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 w-full lg:w-1/2">
             <p className="text-[15px] text-nowrap">
               Mã đơn: <span className="font-medium">#OBSH234</span>
             </p>
@@ -195,7 +187,7 @@ const Contents = () => {
               {tableSelect.map((item, i) => (
                 <button
                   key={i}
-                  className="flex items-center gap-1.5 text-[15px] font-medium bg-black py-0.5 px-2 rounded-md"
+                  className="flex items-center gap-1.5 text-[15px] font-medium bg-white dark:bg-black py-0.5 px-2 rounded-md"
                 >
                   <GoDotFill className="text-xs text-teal-400" />
                   <span className="">Bàn {item}</span>
@@ -207,7 +199,7 @@ const Contents = () => {
           <div className="mt-5 lg:mt-0 flex flex-col lg:flex-row gap-2.5 w-full lg:w-1/2 justify-center lg:justify-end items-center">
             <button
               onClick={() => orderTableHandle()}
-              className="w-full bg-black font-medium px-2 py-[5px] text-white border border-neutral-700 rounded-lg"
+              className="w-full bg-white dark:bg-black font-medium px-2 py-[5px] border border-neutral-200 dark:border-neutral-700 rounded-lg"
             >
               Đặt trước
             </button>
@@ -219,7 +211,7 @@ const Contents = () => {
             </button>
             {tableItemOpen.length > 0 && (
               <>
-                <button className="w-full bg-black font-medium px-2 py-[5px] text-white border border-neutral-700 rounded-lg">
+                <button className="w-full bg-white dark:bg-black font-medium px-2 py-[5px] border border-neutral-200 dark:border-neutral-700 rounded-lg">
                   Hóa đơn
                 </button>
                 <button
@@ -234,36 +226,35 @@ const Contents = () => {
         </div>
 
         <div className="mt-10 lg:mt-14 mb-36 lg:mb-6 flex justify-center">
-          <div className="bg-black border border-neutral-700 flex items-center rounded-lg">
-            <button className="text-white flex items-center gap-1.5 px-3 border-r border-neutral-700">
+          <div className="bg-neutral-100 dark:bg-black border border-neutral-200 dark:border-neutral-700 flex items-center rounded-lg">
+            <button className="flex items-center gap-1.5 px-3">
               <IoMdArrowBack />
               <span className="text-[15px] hidden lg:block">Previous</span>
             </button>
             <div className="flex">
-              <button className="text-white w-10 h-10 flex items-center justify-center border-x border-neutral-700">
+              <button className="w-10 h-10 flex items-center justify-center border-x border-neutral-200 dark:border-neutral-700">
                 1
               </button>
-              <button className="text-white w-10 h-10 flex items-center justify-center border-r border-neutral-700">
+              <button className="w-10 h-10 flex items-center justify-center border-r border-neutral-200 dark:border-neutral-700">
                 2
               </button>
-              <button className="hidden text-white w-10 h-10 lg:flex items-center justify-center border-r border-neutral-700">
+              <button className="hidden w-10 h-10 lg:flex items-center justify-center border-r border-neutral-200 dark:border-neutral-700">
                 3
               </button>
-
-              <button className="text-white w-10 h-10 flex items-center justify-center border-r border-neutral-700">
+              <button className="w-10 h-10 flex items-center justify-center border-r border-neutral-200 dark:border-neutral-700">
                 ...
               </button>
-              <button className="hidden text-white w-10 h-10 lg:flex items-center justify-center border-r border-neutral-700">
+              <button className="hidden w-10 h-10 lg:flex items-center justify-center border-r border-neutral-200 dark:border-neutral-700">
                 8
               </button>
-              <button className="text-white w-10 h-10 flex items-center justify-center border-r border-neutral-700">
+              <button className="w-10 h-10 flex items-center justify-center border-r border-neutral-200 dark:border-neutral-700">
                 9
               </button>
-              <button className="text-white w-10 h-10 flex items-center justify-center border-r border-neutral-700">
+              <button className="w-10 h-10 flex items-center justify-center border-r border-neutral-200 dark:border-neutral-700">
                 10
               </button>
             </div>
-            <button className="text-white flex items-center gap-1.5 px-3">
+            <button className="flex items-center gap-1.5 px-3">
               <span className="text-[15px] hidden lg:block">Next</span>
               <IoMdArrowForward />
             </button>
