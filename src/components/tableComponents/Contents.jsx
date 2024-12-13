@@ -10,10 +10,10 @@ import { FaRegClock } from "react-icons/fa6";
 import { IoMdArrowBack } from "react-icons/io";
 import { IoMdArrowForward } from "react-icons/io";
 import { AppContext } from "../../AppContext";
-import Header from "../header";
 import { FiFilter } from "react-icons/fi";
-import Footer from "../Footer";
 import BillModal from "../modal/BillModal";
+import Footer from "./../Footer";
+import Header from "./../Header";
 
 const Contents = () => {
   const [tableSelect, setTableSelect] = useState([]);
