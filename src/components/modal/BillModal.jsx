@@ -135,7 +135,7 @@ const BillModal = () => {
           </div>
         </div>
 
-        <div className="flex gap-3 mt-5">
+        <div className="flex gap-3 mt-5 pb-4">
           <button className="bg-neutral-800 text-neutral-200 flex items-center justify-center gap-1.5 w-full py-2 rounded-lg">
             <LiaDownloadSolid className="text-lg" />
             <span className="text-sm">Tải xuống hóa đơn</span>

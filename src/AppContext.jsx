@@ -6,7 +6,7 @@ export const AppContext = createContext();
 export const AppProvider = ({ children }) => {
   const [tableItemOpen, setTableItemOpen] = useState([]);
   const [tableItemOrderFirst, setTableItemOrderFirst] = useState([]);
-  const [isBillModal, setIsBillModal] = useState([]);
+  const [isBillModal, setIsBillModal] = useState(false);
 
   const toggleTableItemOpen = (arr) => setTableItemOpen(arr);
   const toggleTableItemOrderFirst = (arr) => setTableItemOrderFirst(arr);
