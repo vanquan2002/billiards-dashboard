@@ -3,19 +3,29 @@ import { IoIosArrowDown } from "react-icons/io";
 import { RiHome6Line } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
-import { BsDot } from "react-icons/bs";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 import { GoDotFill } from "react-icons/go";
 import { FaRegClock } from "react-icons/fa6";
 import { IoMdArrowBack } from "react-icons/io";
 import { IoMdArrowForward } from "react-icons/io";
-import { CgClose } from "react-icons/cg";
+import { AppContext } from "../../AppContext";
+import Header from "../header";
+import { FiFilter } from "react-icons/fi";
+import Footer from "../Footer";
+import BillModal from "../modal/BillModal";
 
 const Contents = () => {
   const [tableSelect, setTableSelect] = useState([]);
   const [isOpenTable, setIsOpenTable] = useState(false);
-  // const { tableSelect, toggleSelectTable } = useContext(AppContext);
+  const [isOrderTable, setIsOrderTable] = useState(false);
+  const {
+    tableItemOpen,
+    toggleTableItemOpen,
+    tableItemOrderFirst,
+    toggleTableItemOrderFirst,
+    toggleIsBillModal,
+  } = useContext(AppContext);
 
   const changeSelectHandle = (id) => {
     setTableSelect((prevState) =>
@@ -25,15 +35,33 @@ const Contents = () => {
     );
   };
 
-  return (
-    <div className="col-span-8 h-screen bg-black relative overflow-hidden">
-      <div className="z-0 absolute top-[-200px] right-[-150px] w-[400px] h-[400px] bg-teal-400 rounded-full blur-[250px]"></div>
-      <div className="z-0 absolute bottom-[-200px] left-[-150px] w-[400px] h-[400px] bg-teal-400 rounded-full blur-[300px]"></div>
+  const openTableHandle = () => {
+    setIsOpenTable(true);
+    setIsOrderTable(false);
+    toggleTableItemOpen(tableSelect);
+  };
 
-      <div className="z-20 relative h-full overflow-y-scroll p-8">
-        <div className="w-full flex items-center justify-between">
+  const orderTableHandle = () => {
+    setIsOrderTable(true);
+    toggleTableItemOrderFirst(tableSelect);
+  };
+
+  return (
+    <div className="col-span-10 lg:col-span-8 h-screen bg-black relative overflow-hidden">
+      <div className="hidden lg:block z-0 absolute top-[-200px] right-[-150px] w-[400px] h-[400px] bg-teal-400 rounded-full blur-[250px]"></div>
+      <div className="hidden lg:block z-0 absolute bottom-[-200px] left-[-150px] w-[400px] h-[400px] bg-teal-400 rounded-full blur-[300px]"></div>
+
+      <div className="z-20 relative h-full overflow-y-scroll p-4 lg:p-8">
+        <Header />
+
+        <button className="lg:hidden mt-16 flex items-center gap-2 text-white">
+          <IoMdArrowBack className="text-xl" />
+          Quay lại
+        </button>
+
+        <div className="mt-4 lg:mt-0 w-full flex items-center justify-between">
           <p className="text-white text-2xl font-medium">Quản lý bàn</p>
-          <div className="flex items-center gap-3 rounded-xl bg-black p-2.5">
+          <div className="hidden lg:flex items-center gap-3 rounded-xl bg-black p-2.5">
             <button className="flex items-center justify-center h-10 w-10 rounded-lg border border-neutral-600">
               <IoNotificationsOutline className="text-white text-xl" />
             </button>
@@ -50,7 +78,7 @@ const Contents = () => {
           </div>
         </div>
 
-        <div className="mt-6 flex items-center gap-3 text-white">
+        <div className="mt-8 lg:mt-6 hidden lg:flex items-center gap-3 text-white">
           <RiHome6Line />
           <IoIosArrowForward className="text-xs" />
           <span className="text-[15px]">Dashboard</span>
@@ -58,10 +86,22 @@ const Contents = () => {
           <span className="text-[15px]">Orders</span>
         </div>
 
-        <div className="grid grid-cols-4 gap-3 bg-neutral-900 p-5 mt-9">
+        <div className="border border-neutral-700 mt-8 bg-black rounded-md p-2.5 lg:hidden flex items-center gap-2">
+          <IoIosSearch className="text-white text-xl" />
+          <span className="text-white text-[15px] font-light">
+            Tìm kiếm tại đây
+          </span>
+        </div>
+
+        <div className="border border-neutral-700 mt-4 bg-neutral-900 rounded-md p-2.5 lg:hidden flex items-center justify-center gap-2">
+          <FiFilter className="text-white text-lg" />
+          <span className="text-white text-[15px] font-light">Bộ lọc</span>
+        </div>
+
+        <div className="hidden lg:grid grid-cols-4 gap-3 bg-neutral-900 p-5 mt-9">
           <div className="col-span-1">
             <span className="text-white">Tìm bàn</span>
-            <div className="mt-1.5 bg-black rounded-md p-2.5 flex items-center gap-2">
+            <div className="border border-neutral-700 mt-1.5 bg-black rounded-md p-2.5 flex items-center gap-2">
               <IoIosSearch className="text-white text-xl" />
               <span className="text-white text-[15px] font-light">
                 Tìm kiếm tại đây
@@ -70,9 +110,9 @@ const Contents = () => {
           </div>
           <div className="col-span-1">
             <span className="text-white">Trạng thái</span>
-            <div className="mt-1.5 bg-black rounded-md p-2.5 flex items-center justify-between">
-              <div className="flex items-center gap-1">
-                <BsDot className="text-white text-xl" />
+            <div className="border border-neutral-700 mt-1.5 bg-black rounded-md p-2.5 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <GoDotFill className="text-white text-xs" />
                 <span className="text-white text-[15px] font-light">
                   Tất cả
                 </span>
@@ -82,14 +122,14 @@ const Contents = () => {
           </div>
           <div className="col-span-1">
             <span className="text-white">Tầng</span>
-            <div className="mt-1.5 bg-black rounded-md p-2.5 flex items-center justify-between gap-2">
+            <div className="border border-neutral-700 mt-1.5 bg-black rounded-md p-2.5 flex items-center justify-between gap-2">
               <span className="text-white text-[15px] font-light">Tầng 1</span>
               <IoIosArrowDown className="text-white" />
             </div>
           </div>
           <div className="col-span-1">
             <span className="text-white">Nhân viên</span>
-            <div className="mt-1.5 bg-black rounded-md p-2.5 flex items-center justify-between gap-2">
+            <div className="border border-neutral-700 mt-1.5 bg-black rounded-md p-2.5 flex items-center justify-between gap-2">
               <span className="text-white text-[15px] font-light">
                 Nhân viên A
               </span>
@@ -98,13 +138,15 @@ const Contents = () => {
           </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-3 gap-8">
+        <div className="mt-10 lg:mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
           {[1, 2, 3, 4, 5, 6, 7].map((item, i) => (
             <div key={i} className="relative">
               <img
                 src={`${
-                  tableSelect.includes(item) && isOpenTable
+                  tableItemOpen.includes(item) && isOpenTable
                     ? "https://scontent.fsgn5-3.fna.fbcdn.net/v/t1.15752-9/466585125_479197591876819_7807659397000343139_n.jpg?stp=dst-jpg_s2048x2048_tt6&_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_ohc=daufZGzr9loQ7kNvgH3JsNT&_nc_zt=23&_nc_ht=scontent.fsgn5-3.fna&oh=03_Q7cD1QFCBu4ebuMJA4jCbtzZBEBn__0ppm3Y4s1XWBOjxsATVA&oe=67836256"
+                    : tableItemOrderFirst.includes(item) && isOrderTable
+                    ? "https://scontent.fsgn5-15.fna.fbcdn.net/v/t1.15752-9/462646546_572227125396797_8384112996409748668_n.jpg?stp=dst-jpg_s2048x2048_tt6&_nc_cat=111&ccb=1-7&_nc_sid=9f807c&_nc_ohc=mtto-XS2zM8Q7kNvgEgDI75&_nc_zt=23&_nc_ht=scontent.fsgn5-15.fna&oh=03_Q7cD1QFLpg1sB2o7-yRzMfijHFAo7Fk6K1dSmuah3fTEMPcXYw&oe=678354D3"
                     : " https://scontent.fsgn5-9.fna.fbcdn.net/v/t1.15752-9/466966474_455968720879276_9124792634408036585_n.jpg?stp=dst-jpg_s2048x2048_tt6&_nc_cat=105&ccb=1-7&_nc_sid=9f807c&_nc_ohc=ojaQ35GrUlcQ7kNvgFFC7V-&_nc_zt=23&_nc_ht=scontent.fsgn5-9.fna&oh=03_Q7cD1QHBVoCRZObLi69aJSpCaN_5PP7ERoD8rGhe0Tqezyt7nw&oe=67836101"
                 }`}
                 alt=""
@@ -142,48 +184,60 @@ const Contents = () => {
           ))}
         </div>
 
-        <div className="mt-16 flex justify-between px-5 py-4 bg-neutral-900 rounded-lg">
-          <div className="flex items-center gap-3 text-white w-1/2">
+        <div className="mt-12 lg:mt-16 flex flex-col lg:flex-row justify-center lg:justify-between px-5 py-4 bg-neutral-900 rounded-lg">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 text-white w-full lg:w-1/2">
             <p className="text-[15px] text-nowrap">
               Mã đơn: <span className="font-medium">#OBSH234</span>
             </p>
-            <span>|</span>
+            <span className="hidden lg:block">|</span>
             <p className="text-[15px] text-nowrap">Bàn đã chọn:</p>
             <div className="flex flex-wrap gap-2">
               {tableSelect.map((item, i) => (
                 <button
                   key={i}
-                  className="flex items-center gap-1 text-[15px] font-medium bg-black py-0.5 px-2 rounded-md"
+                  className="flex items-center gap-1.5 text-[15px] font-medium bg-black py-0.5 px-2 rounded-md"
                 >
+                  <GoDotFill className="text-xs text-teal-400" />
                   <span className="">Bàn {item}</span>
-
-                  <CgClose
-                    className="text-sm"
-                    onClick={() => changeSelectHandle(item)}
-                  />
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="flex gap-2.5 w-1/2 justify-end items-center">
-            <button className="bg-black font-medium flex items-center justify-center w-28 h-12 text-white border border-neutral-700 rounded-lg">
+          <div className="mt-5 lg:mt-0 flex flex-col lg:flex-row gap-2.5 w-full lg:w-1/2 justify-center lg:justify-end items-center">
+            <button
+              onClick={() => orderTableHandle()}
+              className="w-full bg-black font-medium px-2 py-[5px] text-white border border-neutral-700 rounded-lg"
+            >
               Đặt trước
             </button>
             <button
-              onClick={() => setIsOpenTable(true)}
-              className="bg-teal-400 font-medium flex items-center justify-center w-28 h-[3.2rem] text-black rounded-lg"
+              onClick={() => openTableHandle()}
+              className="w-full bg-teal-400 font-medium px-2 py-1.5 text-black rounded-lg"
             >
               Mở bàn
             </button>
+            {tableItemOpen.length > 0 && (
+              <>
+                <button className="w-full bg-black font-medium px-2 py-[5px] text-white border border-neutral-700 rounded-lg">
+                  Hóa đơn
+                </button>
+                <button
+                  onClick={() => toggleIsBillModal(true)}
+                  className="w-full bg-teal-400 font-medium px-2 py-1.5 text-black rounded-lg"
+                >
+                  Thanh toán
+                </button>
+              </>
+            )}
           </div>
         </div>
 
-        <div className="mt-14 flex justify-center mb-6">
+        <div className="mt-10 lg:mt-14 mb-36 lg:mb-6 flex justify-center">
           <div className="bg-black border border-neutral-700 flex items-center rounded-lg">
             <button className="text-white flex items-center gap-1.5 px-3 border-r border-neutral-700">
               <IoMdArrowBack />
-              <span className="text-[15px]">Previous</span>
+              <span className="text-[15px] hidden lg:block">Previous</span>
             </button>
             <div className="flex">
               <button className="text-white w-10 h-10 flex items-center justify-center border-x border-neutral-700">
@@ -192,14 +246,14 @@ const Contents = () => {
               <button className="text-white w-10 h-10 flex items-center justify-center border-r border-neutral-700">
                 2
               </button>
-              <button className="text-white w-10 h-10 flex items-center justify-center border-r border-neutral-700">
+              <button className="hidden text-white w-10 h-10 lg:flex items-center justify-center border-r border-neutral-700">
                 3
               </button>
 
               <button className="text-white w-10 h-10 flex items-center justify-center border-r border-neutral-700">
                 ...
               </button>
-              <button className="text-white w-10 h-10 flex items-center justify-center border-r border-neutral-700">
+              <button className="hidden text-white w-10 h-10 lg:flex items-center justify-center border-r border-neutral-700">
                 8
               </button>
               <button className="text-white w-10 h-10 flex items-center justify-center border-r border-neutral-700">
@@ -210,12 +264,16 @@ const Contents = () => {
               </button>
             </div>
             <button className="text-white flex items-center gap-1.5 px-3">
-              <span className="text-[15px]">Next</span>
+              <span className="text-[15px] hidden lg:block">Next</span>
               <IoMdArrowForward />
             </button>
           </div>
         </div>
+
+        <Footer />
       </div>
+
+      <BillModal />
     </div>
   );
 };

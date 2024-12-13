@@ -4,23 +4,30 @@ import PropTypes from "prop-types"; // Import PropTypes
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [tableSelect, setTableSelect] = useState([]);
+  const [tableItemOpen, setTableItemOpen] = useState([]);
+  const [tableItemOrderFirst, setTableItemOrderFirst] = useState([]);
+  const [isBillModal, setIsBillModal] = useState([]);
 
-  const toggleSelectTable = (id) =>
-    setTableSelect((prevState) =>
-      prevState.includes(id)
-        ? prevState.filter((item) => item !== id)
-        : [...prevState, id]
-    );
+  const toggleTableItemOpen = (arr) => setTableItemOpen(arr);
+  const toggleTableItemOrderFirst = (arr) => setTableItemOrderFirst(arr);
+  const toggleIsBillModal = (bol) => setIsBillModal(bol);
 
   return (
-    <AppContext.Provider value={{ tableSelect, toggleSelectTable }}>
+    <AppContext.Provider
+      value={{
+        tableItemOpen,
+        toggleTableItemOpen,
+        tableItemOrderFirst,
+        toggleTableItemOrderFirst,
+        isBillModal,
+        toggleIsBillModal,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );
 };
 
-// Thêm propTypes cho children
 AppProvider.propTypes = {
-  children: PropTypes.node.isRequired, // hoặc PropTypes.any nếu bạn không biết kiểu chính xác
+  children: PropTypes.node.isRequired,
 };

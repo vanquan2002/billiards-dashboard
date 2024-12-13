@@ -4,10 +4,13 @@ import { BsFolder } from "react-icons/bs";
 import { FiSettings } from "react-icons/fi";
 import { RxLightningBolt } from "react-icons/rx";
 import { IoIosClose } from "react-icons/io";
+import { useState } from "react";
 
 const Sidebar = () => {
+  const [isDrop, setIsDrop] = useState();
+
   return (
-    <div className="col-span-2 sticky left-0 top-0 h-screen bg-black px-4 py-6 flex flex-col justify-between">
+    <div className="hidden col-span-2 sticky left-0 top-0 h-screen bg-black px-4 py-6 lg:flex flex-col justify-between">
       <div>
         <div className="flex justify-center">
           <img
@@ -17,30 +20,41 @@ const Sidebar = () => {
           />
         </div>
         <nav className="mt-6 flex flex-col">
-          <button className="flex items-center gap-2.5 px-2.5 py-2 bg-neutral-900 border-l-[3px] border-teal-400">
+          <button className="flex items-center gap-2.5 px-2.5 py-2">
             <RiHome6Line className="text-white text-2xl" />
             <span className="text-white text-[17px]">Tổng quan</span>
           </button>
 
-          <button className="flex items-center justify-between px-2.5 py-2 bg-neutral-900 border-l-[3px] border-teal-400">
+          <button
+            onClick={() => setIsDrop(!isDrop)}
+            className="flex items-center justify-between px-2.5 py-2 bg-neutral-900 border-l-[3px] border-teal-400"
+          >
             <div className="flex gap-2.5">
               <BsFolder className="text-white text-xl" />
               <span className="text-white text-[17px]">Quản lý</span>
             </div>
 
-            <IoIosArrowUp className="text-white" />
+            <IoIosArrowUp
+              className={`transform transition-transform ${
+                isDrop ? "" : "rotate-180"
+              } text-white`}
+            />
           </button>
 
-          <div className="w-full flex flex-col items-start justify-start bg-neutral-900">
+          <div
+            className={`${
+              isDrop ? "block" : "hidden"
+            } w-full flex flex-col items-start justify-start`}
+          >
             <button className="text-white w-full py-2 text-left p-12">
               Cửa hàng
             </button>
-            <button className="text-white w-full py-2 text-left p-12">
+            <button className="text-white w-full py-2 text-left p-12 bg-neutral-900">
               Bàn bida
             </button>
           </div>
 
-          <button className="flex items-center gap-2.5 px-2.5 py-2 bg-neutral-900 border-l-[3px] border-teal-400">
+          <button className="flex items-center gap-2.5 px-2.5 py-2">
             <FiSettings className="text-white text-xl" />
             <span className="text-white text-[17px]">Cài đặt</span>
           </button>
